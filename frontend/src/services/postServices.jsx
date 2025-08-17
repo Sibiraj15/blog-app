@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/posts"; // your backend URL
+const API_URL = import.meta.env.VITE_API_URL; // your backend URL
 
 export const getAllPosts = () => axios.get(API_URL);
 export const getPostById = (id) => axios.get(`${API_URL}/${id}`);
