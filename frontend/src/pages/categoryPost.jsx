@@ -9,13 +9,14 @@ export default function CategoryPost() {
    const [posts, setPosts] = useState([]);
    const [category, setCategory] = useState(null);
    const {id} = useParams();
+   const API = import.meta.env.VITE_API_URL;
 
    const fetchPosts = async () => {
-		const response = await axios.get(`http://localhost:8000/api/posts/category/${id}`)
+		const response = await axios.get(`${API}/api/posts/category/${id}`)
 		setPosts(response.data);
    }
 	const fetchCategory = async () => {
-		const response = await axios.get(`http://localhost:8000/api/categories/${id}`)
+		const response = await axios.get(`${API}/api/categories/${id}`)
 		setCategory(response.data);
 	
    }
@@ -44,7 +45,7 @@ export default function CategoryPost() {
             <div key={post._id} className="col-md-6 col-lg-4">
               <div className="card h-100 shadow-sm border-0">
                 <img
-               src={post.image ? `http://localhost:8000${post.image}` : "placeholder.jpg"}           
+               src={post.image ? `${API}/${post.image}` : "placeholder.jpg"}           
                       className="card-img-top"
                   alt={post.title}
                   style={{ height: "150px", objectFit: "cover" }}

@@ -6,16 +6,16 @@ import Slider from "react-slick";
 
 
 export default function PostList() {
-
+  const API = import.meta.env.VITE_API_URL;
    const [posts, setPosts] = useState([]);
    const [categories, setCategories] = useState([]);
 
    const fetchPosts = async () => {
-		const response = await axios.get('http://localhost:8000/api/posts')
+		const response = await axios.get(`${API}/api/posts`)
 		setPosts(response.data);
    }
 	const fetchCategories = async () => {
-		const response = await axios.get('http://localhost:8000/api/categories')
+		const response = await axios.get(`${API}/api/categories`)
 		setCategories(response.data);
 	
    }

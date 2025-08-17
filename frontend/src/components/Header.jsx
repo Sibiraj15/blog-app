@@ -6,11 +6,12 @@ export default function Header() {
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("token"); // store token on login/signup
     if (token) {
-      fetch("http://localhost:8000/api/auth/get-role", {
+      fetch(`${API}/api/auth/get-role`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())

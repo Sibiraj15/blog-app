@@ -14,6 +14,7 @@ const SignupForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_URL;
 
   const handleSignup = async(e) => {
     e.preventDefault();
@@ -32,7 +33,7 @@ const SignupForm = () => {
 
     // ✅ Send data to backend signup API
    try {
-      const res = await axios.post("http://localhost:8000/api/auth/signup", {
+      const res = await axios.post(`${API}/api/auth/signup`, {
         name,
         email,
         password

@@ -13,7 +13,7 @@ export default function PostForm({ postId }) {
   const [categories, setCategories] = useState([]);
   const loggedInUserEmail = localStorage.getItem("email");
   const navigate = useNavigate();
-
+const API = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -29,7 +29,7 @@ export default function PostForm({ postId }) {
   }, [postId]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/categories")
+    fetch(`${API}/api/categories`)
       .then(res => res.json())
       .then(data => setCategories(data))
       .catch(err => console.error(err));

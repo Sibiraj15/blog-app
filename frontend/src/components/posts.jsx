@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function Post({ post, userEmail, onDelete }) {
+  const API = import.meta.env.VITE_API_URL;
   return (
     <div
       className="card shadow-lg border-0 mx-auto"
@@ -12,7 +13,7 @@ export default function Post({ post, userEmail, onDelete }) {
       }}
     >
       <img
-        src={post.image ? `http://localhost:8000${post.image}` : "placeholder.jpg"}
+        src={post.image ? `${API}/${post.image}` : "placeholder.jpg"}
         alt={post.title}
         className="card-img-top"
         style={{

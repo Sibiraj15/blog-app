@@ -11,7 +11,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
     const navigate = useNavigate(); // if not already defined
-
+const API = import.meta.env.VITE_API_URL;
 
  const handleLogin = (e) => {
   e.preventDefault();
@@ -23,7 +23,7 @@ const LoginForm = () => {
   }
 
   // ✅ Call backend login API
-  axios.post("http://localhost:8000/api/auth/login", { email, password })
+  axios.post(`${API}/api/auth/login`, { email, password })
     .then(res => {
       // You can save JWT token if needed
       localStorage.setItem("token", res.data.token);

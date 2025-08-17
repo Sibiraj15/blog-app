@@ -5,10 +5,11 @@ export default function PostDetails() {
 
     const [post, setPost] = useState([null]);
     const {id} = useParams();
+    const API = import.meta.env.VITE_API_URL;
    
         const fetchPost = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/posts/${id}`)
+                const response = await axios.get(`${API}/api/posts/${id}`)
                 setPost(response.data);
             } catch (error) {
                 console.log("Error fetching post:", error);
@@ -38,7 +39,7 @@ export default function PostDetails() {
 
             <img
               className="mb-3"
-                    src={post.image ? `http://localhost:8000${post.image}` : "https://via.placeholder.com/600x400"}
+                    src={post.image ? `${API}/${post.image}` : "https://via.placeholder.com/600x400"}
                     alt={post.title}
                       style={{
                     width: "100%",        // full width of the container
