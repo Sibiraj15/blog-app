@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Getting Started with MERN Stack",
+    "content": "The MERN stack combines MongoDB, Express, React, and Node.js to build full-stack web applications. This guide walks you through setting up your development environment.",
+    "category": "Web Development",
+    "author": "Sibiraj S",
+    "image": "https://example.com/images/mern-stack.png",
+    "createdAt": "2025-08-07T13:15:22.123Z",
+    "updatedAt": "2025-08-07T13:15:22.123Z"
+  },
+  {
+    "title": "Understanding React Hooks",
+    "content": "Hooks like useState and useEffect make functional components more powerful. In this post, we break down each hook with practical examples.",
+    "category": "Frontend",
+    "author": "Ananya R",
+    "image": "https://example.com/images/react-hooks.png",
+    "createdAt": "2025-08-06T13:15:22.123Z",
+    "updatedAt": "2025-08-06T13:15:22.123Z"
+  },
+  {
+    "title": "Top 5 MongoDB Tips for Beginners",
+    "content": "Learn how to design schemas, use indexes, and write efficient queries in MongoDB to boost your app's performance.",
+    "category": "Database",
+    "author": "Rahul M",
+    "image": "https://example.com/images/mongodb-tips.png",
+    "createdAt": "2025-08-05T13:15:22.123Z",
+    "updatedAt": "2025-08-05T13:15:22.123Z"
+  },
+  {
+    "title": "Deploying Your Node.js App on Render",
+    "content": "A step-by-step tutorial to deploy your Node.js backend using Render.com. Learn how to manage environment variables and scale your app.",
+    "category": "DevOps",
+    "author": "Sibiraj S",
+    "image": "https://example.com/images/render-deploy.png",
+    "createdAt": "2025-08-04T13:15:22.123Z",
+    "updatedAt": "2025-08-04T13:15:22.123Z"
+  },
+  {
+    "title": "CSS Grid vs Flexbox: When to Use What?",
+    "content": "Both Grid and Flexbox are powerful layout tools in CSS. This article helps you decide which one to use in various design scenarios.",
+    "category": "UI/UX",
+    "author": "Meera K",
+    "image": "https://example.com/images/css-grid-flexbox.png",
+    "createdAt": "2025-08-03T13:15:22.123Z",
+    "updatedAt": "2025-08-03T13:15:22.123Z"
+  }
+]
