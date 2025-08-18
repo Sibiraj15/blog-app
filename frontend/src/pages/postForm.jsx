@@ -13,6 +13,7 @@ export default function PostForm() {
     title: "",
     content: "",
     category: "",
+    author: "",
     image: null,
   });
   const loggedInUserEmail = localStorage.getItem("email");
@@ -44,7 +45,7 @@ export default function PostForm() {
       form.append("title", formData.title);
       form.append("content", formData.content);
       form.append("category", formData.category);
-      form.append("author", loggedInUserEmail);
+      form.append("author", formData.author || loggedInUserEmail);
       if (formData.image) form.append("image", formData.image);
 
       await createPost(form); // send FormData to backend
@@ -64,22 +65,45 @@ export default function PostForm() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        position: "relative",
+        backgroundImage: `url('https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=1920&auto=format&fit=crop&q=80')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         padding: "20px",
-        background: "#f2f2f2",
       }}
     >
+      {/* Overlay for better readability */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "rgba(0,0,0,0.5)",
+          zIndex: 0,
+        }}
+      ></div>
+
+      {/* Form Card */}
       <form
         onSubmit={handleSubmit}
         style={{
+          position: "relative",
+          zIndex: 1,
           width: "100%",
           maxWidth: "600px",
           padding: "30px",
-          backgroundColor: "#fff",
+          backgroundColor: "rgba(255,255,255,0.9)",
           borderRadius: "12px",
           boxShadow: "0 8px 25px rgba(0,0,0,0.2)",
         }}
       >
-        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Create New Post</h2>
+        <h2
+          style={{ textAlign: "center", marginBottom: "30px", color: "#343a40" }}
+        >
+          Create New Post
+        </h2>
 
         <Input
           size="large"
@@ -87,7 +111,7 @@ export default function PostForm() {
           name="title"
           value={formData.title}
           onChange={handleChange}
-          style={{ marginBottom: "15px" }}
+          style={{ marginBottom: "20px" }}
           required
         />
 
@@ -98,7 +122,7 @@ export default function PostForm() {
           value={formData.content}
           onChange={handleChange}
           rows={6}
-          style={{ marginBottom: "15px" }}
+          style={{ marginBottom: "20px" }}
           required
         />
 
@@ -107,7 +131,7 @@ export default function PostForm() {
           placeholder="Select Category"
           value={formData.category}
           onChange={handleCategoryChange}
-          style={{ marginBottom: "15px", width: "100%" }}
+          style={{ marginBottom: "20px", width: "100%" }}
           required
         >
           {categories.map((cat) => (
@@ -117,6 +141,15 @@ export default function PostForm() {
           ))}
         </Select>
 
+        <Input
+          size="large"
+          placeholder="Author"
+          name="author"
+          value={formData.author}
+          onChange={handleChange}
+          style={{ marginBottom: "20px" }}
+        />
+
         <Upload
           name="image"
           listType="picture"
@@ -125,7 +158,7 @@ export default function PostForm() {
             return false; // prevent default upload
           }}
         >
-          <Button icon={<UploadOutlined />} size="large" style={{ marginBottom: "15px" }}>
+          <Button icon={<UploadOutlined />} size="large" style={{ marginBottom: "30px" }}>
             Select Image
           </Button>
         </Upload>
@@ -134,7 +167,7 @@ export default function PostForm() {
           <img
             src={URL.createObjectURL(formData.image)}
             alt="preview"
-            style={{ maxWidth: "200px", marginBottom: "15px" }}
+            style={{ maxWidth: "200px", marginBottom: "10px" }}
           />
         )}
 
