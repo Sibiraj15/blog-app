@@ -45,7 +45,7 @@ export default function PostForm() {
       form.append("title", formData.title);
       form.append("content", formData.content);
       form.append("category", formData.category);
-      form.append("author", formData.author || loggedInUserEmail);
+      form.append("author",  loggedInUserEmail);
       if (formData.image) form.append("image", formData.image);
 
       await createPost(form); // send FormData to backend
