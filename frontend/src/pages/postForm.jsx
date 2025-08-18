@@ -16,6 +16,13 @@ export default function PostForm() {
     author: "",
     image: null,
   });
+
+  useEffect(() => {
+    if (postId) {
+      getPostById(postId).then(res => setFormData(res.data));
+    }
+  }, [postId]);
+
   const loggedInUserEmail = localStorage.getItem("email");
   const navigate = useNavigate();
   const API = import.meta.env.VITE_API_URL;
