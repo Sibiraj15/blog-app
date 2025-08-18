@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require('cors');
 const mongoose = require("mongoose");
@@ -14,15 +15,18 @@ const PORT = process.env.PORT || 8000;
 
 // middleware
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173", "https://blog-app-azure-zeta.vercel.app/"],
+  credentials: true, // if using cookies or auth headers
+}));
 
 // to server upload files
 app.use('/uploads', express.static('uploads'));
 
 //connect  mongoDB
-    mongoose.connect("mongodb://localhost:27017/blog")
+    mongoose.connect(process.env.MONGO_URI)
     .then(()=> console.log("MongoDB connected Successfully"))
-    .catch(err => console.log('DB error',err));
+    .catch(err => console.log('MongoDB connection error',err));
 
 // use Routes
 

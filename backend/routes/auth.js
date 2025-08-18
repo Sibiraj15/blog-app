@@ -36,7 +36,7 @@ router.post("/signup", async (req, res) => {
     await newUser.save();
     const token = jwt.sign(
       { id: newUser._id, email: newUser.email, name: newUser.name, role: newUser.role },
-      "SECRET_KEY",
+       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
@@ -57,7 +57,9 @@ router.post("/login", async (req, res) => {
   const validPassword = bcrypt.compareSync(password, user.password);
   if (!validPassword) return res.status(400).json({ message: "Invalid password" });
 
-  const token = jwt.sign({ id: user._id, email: user.email, name: user.name, role: user.role }, "SECRET_KEY", { expiresIn: "1h" });
+  const token = jwt.sign({ id: user._id, email: user.email, name: user.name, role: user.role }, 
+     process.env.JWT_SECRET,
+      { expiresIn: "1h" });
   res.json({ token, name: user.name, email: user.email, role: user.role });
 });
 
@@ -75,7 +77,8 @@ router.post("/google-login", async (req, res) => {
       await user.save();
     }
 
-    const token = jwt.sign({ id: user._id, email, name, role: user.role }, "SECRET_KEY", { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id, email, name, role: user.role },  process.env.JWT_SECRET,
+       { expiresIn: "1h" });
     res.json({ token, name, email, role: user.role });
   } catch (err) {
     res.status(400).json({ message: "Invalid Google token" });
@@ -87,7 +90,7 @@ router.get("/get-role", (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) return res.status(401).json({ message: "No token provided" });
 
-  jwt.verify(token, "SECRET_KEY", async (err, decoded) => {
+  jwt.verify(token,  process.env.JWT_SECRET, async (err, decoded) => {
     if (err) return res.status(403).json({ message: "Invalid token" });
 
     const user = await User.findById(decoded.id).select("role name");
