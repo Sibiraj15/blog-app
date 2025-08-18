@@ -1,9 +1,12 @@
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL; // your backend URL
+const API = import.meta.env.VITE_API_URL; // backend base URL
 
-export const getAllPosts = () => axios.get(API_URL);
-export const getPostById = (id) => axios.get(`${API_URL}/${id}`);
-export const createPost = (postData) => axios.post(API_URL, postData);
-export const updatePost = (id, postData) => axios.put(`${API_URL}/${id}`, postData);
-export const deletePost = (id) => axios.delete(`${API_URL}/${id}`);
+// Post-related requests
+export const getAllPosts = () => axios.get(`${API}/api/posts`);
+export const getPostById = (id) => axios.get(`${API}/api/posts/${id}`);
+export const createPost = (postData) => 
+  axios.post(`${API}/api/posts`, postData, {
+    headers: { "Content-Type": "multipart/form-data" }
+  });
+export const deletePost = (id) => axios.delete(`${API}/api/posts/${id}`);
