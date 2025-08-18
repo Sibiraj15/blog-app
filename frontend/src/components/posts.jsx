@@ -13,8 +13,8 @@ export default function Post({ post, userEmail, onDelete }) {
       }}
     >
       <img
-        src={post.image ? `${API}/${post.image}` : "placeholder.jpg"}
-        alt={post.title}
+        src={post.image?.startsWith("http") ? post.image : `${API}${post.image}`}   
+     alt={post.title}
         className="card-img-top"
         style={{
           height: "45%",
