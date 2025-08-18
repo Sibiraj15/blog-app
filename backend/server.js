@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser")
 const postRoutes = require('./routes/posts')
@@ -16,9 +16,14 @@ const PORT = process.env.PORT || 8000;
 // middleware
 app.use(bodyParser.json());
 app.use(cors({
-  origin: ["http://localhost:5173", "https://blog-app-azure-zeta.vercel.app/"],
-  credentials: true, // if using cookies or auth headers
+  origin: [
+    "http://localhost:5173",                     // local dev
+    "https://blog-app-azure-zeta.vercel.app"     // your vercel frontend
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
+
 
 // to server upload files
 app.use('/uploads', express.static('uploads'));
