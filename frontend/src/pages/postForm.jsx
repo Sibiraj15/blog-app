@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createPost } from "../services/postServices";
+import { createPost, getPostById } from "../services/postServices";
 import { Input, Select, Button, Upload } from "antd";
 import { useNavigate } from "react-router-dom";
 import { UploadOutlined } from "@ant-design/icons";
@@ -7,7 +7,7 @@ import { UploadOutlined } from "@ant-design/icons";
 const { TextArea } = Input;
 const { Option } = Select;
 
-export default function PostForm() {
+export default function PostForm(postId) {
   const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
