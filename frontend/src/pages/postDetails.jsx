@@ -39,8 +39,8 @@ export default function PostDetails() {
 
             <img
               className="mb-3"
-                    src={post.image ? `${API}/${post.image}` : "https://via.placeholder.com/600x400"}
-                    alt={post.title}
+                src={post.image?.startsWith("http") ? post.image : `${API}${post.image}`}        
+                            alt={post.title}
                       style={{
                     width: "100%",        // full width of the container
                     maxHeight: "400px",   // limit height

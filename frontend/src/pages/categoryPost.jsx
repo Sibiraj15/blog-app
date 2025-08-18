@@ -45,7 +45,7 @@ export default function CategoryPost() {
             <div key={post._id} className="col-md-6 col-lg-4">
               <div className="card h-100 shadow-sm border-0">
                 <img
-               src={post.image ? `${API}/${post.image}` : "placeholder.jpg"}           
+        src={post.image?.startsWith("http") ? post.image : `${API}${post.image}`}   
                       className="card-img-top"
                   alt={post.title}
                   style={{ height: "150px", objectFit: "cover" }}
