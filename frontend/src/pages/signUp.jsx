@@ -53,6 +53,7 @@ const SignupForm = () => {
   const handleGoogleSuccess = (credentialResponse) => {
     console.log("Google Credential:", credentialResponse);
     alert("Google signup/login successful!");
+    navigate("/home");
     // send credentialResponse.credential to backend to create/login user
   };
 
